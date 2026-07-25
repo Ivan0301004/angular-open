@@ -1,15 +1,13 @@
 {
-  "version": 2,
-  "rewrites": [
-    { "source": "/", "destination": "/api" },
-    { "source": "/(.*)", "destination": "/api" }
+  "buildCommand": "npm run build",
+  "framework": null,
+  "installCommand": "npm install",
+  "routes": [
+    { "src": "/(.*)", "dest": "/api" }
   ],
   "functions": {
     "api/index.js": {
       "includeFiles": "dist/open/**"
     }
-  },
-  "env": {
-    "NG_ALLOWED_HOSTS": "*.vercel.app"
   }
 }
