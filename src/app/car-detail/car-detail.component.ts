@@ -1,7 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { Meta, Title } from '@angular/platform-browser';
-import { CarService, Car } from '../car.service';
+import { Car } from '../car.service';
 import { CurrencyPipe } from '@angular/common';
 
 @Component({
@@ -52,35 +51,10 @@ import { CurrencyPipe } from '@angular/common';
 })
 export class CarDetailComponent implements OnInit {
   private route = inject(ActivatedRoute);
-  private carService = inject(CarService);
-  private meta = inject(Meta);
-  private title = inject(Title);
 
   car: Car | undefined;
 
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id')!;
-    this.car = this.carService.getById(id);
-
-    if (this.car) {
-      const title = `${this.car.brand} ${this.car.name} ${this.car.year}`;
-      const desc = this.car.description;
-      const img = this.car.image;
-
-      this.title.setTitle(title);
-      this.meta.updateTag({ name: 'description', content: desc });
-
-      // OG tags - crawlers read these from SSR HTML
-      this.meta.updateTag({ property: 'og:title', content: title });
-      this.meta.updateTag({ property: 'og:description', content: desc });
-      this.meta.updateTag({ property: 'og:image', content: img });
-      this.meta.updateTag({ property: 'og:type', content: 'website' });
-
-      // Twitter Card
-      this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
-      this.meta.updateTag({ name: 'twitter:title', content: title });
-      this.meta.updateTag({ name: 'twitter:description', content: desc });
-      this.meta.updateTag({ name: 'twitter:image', content: img });
-    }
+    this.car = this.route.snapshot.data['car'];
   }
 }
