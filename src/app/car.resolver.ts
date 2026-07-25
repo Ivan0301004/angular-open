@@ -17,7 +17,7 @@ export class CarResolver implements Resolve<Car | undefined> {
       const pageTitle = `${car.brand} ${car.name} ${car.year}`;
       const desc = car.description;
       const img = car.image;
-      const url = `https://angular-open.vercel.app/car/${car.id}`;
+      const url = `https://nicecaryo.netlify.app/car/${car.id}`;
 
       this.title.setTitle(pageTitle);
       this.meta.updateTag({ name: 'description', content: desc });
