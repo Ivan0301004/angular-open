@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "rewrites": [
+    { "source": "/", "destination": "/api" },
+    { "source": "/(.*)", "destination": "/api" }
+  ],
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "dist/open/**"
+    }
+  },
+  "env": {
+    "NG_ALLOWED_HOSTS": "*.vercel.app"
+  }
+}
