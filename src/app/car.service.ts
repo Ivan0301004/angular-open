@@ -24,7 +24,7 @@ const CARS: Car[] = [
     brand: 'Tesla',
     year: 2024,
     price: 42990,
-    image: 'https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Homepage-Model-3-Desktop-LHD.jpg',
+    image: 'https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=800&h=600&fit=crop',
     description: 'Sedán eléctrico con alcance de hasta 358 millas y aceleración de 0-60 mph en 3.1 segundos.',
     specs: { engine: 'Eléctrico', horsepower: 283, transmission: 'Automática', fuel: 'Eléctrico' }
   },
@@ -34,7 +34,7 @@ const CARS: Car[] = [
     brand: 'BMW',
     year: 2024,
     price: 74700,
-    image: 'https://www.bmw.com.mx/content/dam/bmw/common/all-models/m-series/m4-coupe/2024/highlights/bmw-m-series-m4-coupe-hero.jpg',
+    image: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=600&fit=crop',
     description: 'Coupé deportivo con motor twin-turbo de 6 cilindros en línea que entrega 503 caballos de fuerza.',
     specs: { engine: '3.0L Twin-Turbo I6', horsepower: 503, transmission: 'Automática 8 vel.', fuel: 'Gasolina' }
   },
@@ -44,7 +44,7 @@ const CARS: Car[] = [
     brand: 'Mercedes-Benz',
     year: 2024,
     price: 92600,
-    image: 'https://www.mercedes-benz.com.mx/content/dam/mb-nft/mx/models/passenger-cars/amg-gt/01-mercedes-amg-gt.jpg',
+    image: 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&h=600&fit=crop',
     description: 'Grand Tourer de alto rendimiento con motor biturbo V8 y diseño aerodinámico agresivo.',
     specs: { engine: '4.0L Biturbo V8', horsepower: 523, transmission: 'Automática 9 vel.', fuel: 'Gasolina' }
   },
@@ -54,7 +54,7 @@ const CARS: Car[] = [
     brand: 'Porsche',
     year: 2024,
     price: 117100,
-    image: 'https://files.porsche.com/filestore/image/multimedia/none/992-gt2-rs-stage-image-01/optimized/f99ef426-e3b7-11ed-80f5-005056be2068.jpg',
+    image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&h=600&fit=crop',
     description: 'El ícono deportivo, motor boxer biturbo con tracción trasera y manejo incomparable.',
     specs: { engine: '3.0L Biturbo Flat-6', horsepower: 443, transmission: 'PDK 8 vel.', fuel: 'Gasolina' }
   },
@@ -64,7 +64,7 @@ const CARS: Car[] = [
     brand: 'Ferrari',
     year: 2024,
     price: 269560,
-    image: 'https://www.ferrari.com/en-EN/auto/ferrari-roma',
+    image: 'https://images.unsplash.com/photo-1592198084033-aade902d1aae?w=800&h=600&fit=crop',
     description: 'GT elegante con motor V8 turbo que captura la esencia de la dolce vita italiana.',
     specs: { engine: '3.9L Twin-Turbo V8', horsepower: 612, transmission: 'DCT 8 vel.', fuel: 'Gasolina' }
   }
