@@ -36,7 +36,7 @@
               "entry": "src/server.ts"
             },
             "security": {
-              "allowedHosts": ["*.vercel.app", "localhost"]
+              "allowedHosts": ["*.netlify.app", "localhost"]
             }
           },
           "configurations": {
