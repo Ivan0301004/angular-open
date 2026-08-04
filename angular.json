@@ -36,7 +36,7 @@
               "entry": "src/server.ts"
             },
             "security": {
-              "allowedHosts": ["*.netlify.app", "localhost"]
+              "allowedHosts": ["*.netlify.app", "localhost", "44.222.68.244"]
             }
           },
           "configurations": {
