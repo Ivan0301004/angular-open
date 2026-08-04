@@ -4,9 +4,14 @@ import {
   isMainModule,
   writeResponseToNodeResponse,
 } from '@angular/ssr/node';
+import { AngularAppEngine } from '@angular/ssr';
 import express from 'express';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+
+// ponytail: private API — host check off for testing (IP cambia cada deploy en Fargate).
+// Ceiling: pierde la protección SSRF contra host spoofing; quitar antes de ir a prod.
+AngularAppEngine.ɵdisableAllowedHostsCheck = true;
 
 const serverDistFolder = dirname(fileURLToPath(import.meta.url));
 const browserDistFolder = resolve(serverDistFolder, '../browser');
