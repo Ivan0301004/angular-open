@@ -12,7 +12,11 @@ const serverDistFolder = dirname(fileURLToPath(import.meta.url));
 const browserDistFolder = resolve(serverDistFolder, '../browser');
 
 const app = express();
-const angularApp = new AngularNodeAppEngine();
+
+// ↓↓↓ CAMBIO IMPORTANTE AQUÍ ↓↓↓
+const angularApp = new AngularNodeAppEngine({
+  allowedHosts: ['*']          // Permite cualquier host (incluyendo la IP pública)
+});
 
 app.use(
   express.static(browserDistFolder, {
