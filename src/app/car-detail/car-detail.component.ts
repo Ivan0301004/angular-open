@@ -9,7 +9,12 @@ import { CurrencyPipe } from '@angular/common';
   template: `
     @if (car) {
       <div class="container">
-        <a routerLink="/" class="back">← Volver</a>
+        <div class="top-bar">
+          <a routerLink="/" class="back">← Volver</a>
+          <button class="share-btn" (click)="share()">
+            {{ copied ? 'Copiado!' : 'Compartir' }}
+          </button>
+        </div>
         <div class="detail">
           <img [src]="car.image" [alt]="car.name">
           <div class="info">
@@ -35,8 +40,11 @@ import { CurrencyPipe } from '@angular/common';
   `,
   styles: `
     .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
-    .back { display: inline-block; margin-bottom: 1rem; color: #2563eb; text-decoration: none; }
+    .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+    .back { color: #2563eb; text-decoration: none; }
     .back:hover { text-decoration: underline; }
+    .share-btn { background: #2563eb; color: white; border: none; padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; font-size: 0.9rem; }
+    .share-btn:hover { background: #1d4ed8; }
     .detail { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
     .detail img { width: 100%; border-radius: 12px; object-fit: cover; max-height: 400px; }
     h1 { margin: 0 0 0.5rem; }
@@ -53,8 +61,20 @@ export class CarDetailComponent implements OnInit {
   private route = inject(ActivatedRoute);
 
   car: Car | undefined;
+  copied = false;
 
   ngOnInit() {
     this.car = this.route.snapshot.data['car'];
+  }
+
+  share() {
+    const url = window.location.href;
+    if (navigator.share) {
+      navigator.share({ title: `${this.car?.brand} ${this.car?.name}`, url });
+    } else {
+      navigator.clipboard.writeText(url);
+      this.copied = true;
+      setTimeout(() => this.copied = false, 2000);
+    }
   }
 }

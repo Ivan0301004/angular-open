@@ -1,0 +1,31 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo "Logging in to Amazon ECR..."
+      - aws --version
+      - REPOSITORY_URI=118115053841.dkr.ecr.us-east-1.amazonaws.com/eliteartcompany
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $REPOSITORY_URI
+
+  build:
+    commands:
+      - echo "Build started on `date`"
+      - echo "Building Docker image..."
+      - docker build -t $REPOSITORY_URI:latest .
+      - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
+      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+
+  post_build:
+    commands:
+      - echo "Build completed on `date`"
+      - echo "Pushing Docker images..."
+      - docker push $REPOSITORY_URI:latest
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - echo "Writing image definitions file..."
+      - DOCKER_CONTAINER_NAME=eliteartcompany
+      - printf '[{"name":"%s","imageUri":"%s"}]' $DOCKER_CONTAINER_NAME $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+
+artifacts:
+  files:
+    - imagedefinitions.json
