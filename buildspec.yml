@@ -5,7 +5,7 @@ phases:
     commands:
       - echo "Logging in to Amazon ECR..."
       - aws --version
-      - REPOSITORY_URI=118115053841.dkr.ecr.us-east-1.amazonaws.com/eliteartcompany
+      - REPOSITORY_URI=118115053841.dkr.ecr.us-east-1.amazonaws.com/cars-open
       - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $REPOSITORY_URI
 
   build:
@@ -23,7 +23,7 @@ phases:
       - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - echo "Writing image definitions file..."
-      - DOCKER_CONTAINER_NAME=eliteartcompany
+      - DOCKER_CONTAINER_NAME=cars-open
       - printf '[{"name":"%s","imageUri":"%s"}]' $DOCKER_CONTAINER_NAME $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 
 artifacts:
