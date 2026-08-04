@@ -12,10 +12,17 @@ const serverDistFolder = dirname(fileURLToPath(import.meta.url));
 const browserDistFolder = resolve(serverDistFolder, '../browser');
 
 const app = express();
-
-// ↓↓↓ CAMBIO IMPORTANTE AQUÍ ↓↓↓
 const angularApp = new AngularNodeAppEngine({
-  allowedHosts: ['*']          // Permite cualquier host (incluyendo la IP pública)
+  allowedHosts: ['*']
+});
+
+// ↓↓↓ ESTE MIDDLEWARE ES LA CLAVE ↓↓↓
+app.use((req, res, next) => {
+  // Quita el puerto del header Host (ej: 13.223.235.66:4000 → 13.223.235.66)
+  if (req.headers.host && req.headers.host.includes(':')) {
+    req.headers.host = req.headers.host.split(':')[0];
+  }
+  next();
 });
 
 app.use(
